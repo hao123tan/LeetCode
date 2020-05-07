@@ -1,0 +1,16 @@
+ def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        for i in range(len(gas)):
+            situation = True
+            if (gas[i] >= cost[i]):
+                wholeGas = 0
+
+                for j in range(i, len(gas) + i, 1):
+                    wholeGas += gas[j % len(gas)]
+                    wholeGas -= cost[j % len(gas)]
+                    if (wholeGas < 0):
+                        situation = False
+                        break
+                if situation:
+                    return i
+        
+        return -1
